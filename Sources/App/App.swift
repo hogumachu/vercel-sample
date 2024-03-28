@@ -1,9 +1,13 @@
 import Vercel
+import TokamakStaticHTML
 
 @main
-struct App: RequestHandler {
-
-    func onRequest(_ req: Request) async throws -> Response {
-        return .status(.ok).send("Hello, Swift")
-    }
+struct App: ExpressHandler {
+  
+  static func configure(router: Router) async throws {
+    router.get("/", Home())
+    router.get("/detail", Detail())
+  }
+  
 }
+
